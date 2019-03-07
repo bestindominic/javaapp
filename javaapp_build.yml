@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+  - docker_tag: "{{ docker_image_tag }}"
+
+  tasks:
+  - name: javaapp  build | Build Docker
+    shell: docker build . -t {{ docker_tag }}
+    delegate_to: 127.0.0.1
+    run_once: true
+

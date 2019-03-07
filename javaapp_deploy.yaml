@@ -1,0 +1,14 @@
+---
+- name: Deploy Bulk Indexer
+  hosts: "{{ target_env }}"
+  any_errors_fatal: true
+  gather_facts: false
+
+
+  tasks:
+  - name: BulkIndexer | Stop existing
+    shell: docker rm -f {{ env_type }}_index-products_1
+    ignore_errors: yes
+
+  - name: BulkIndexer | Start existing
+    shell: docker run -d  --restart always --name javaapp_container {{ docker_tag }} 
