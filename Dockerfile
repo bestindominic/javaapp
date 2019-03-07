@@ -34,8 +34,8 @@ ADD . /app
 
 RUN cd /app/complete && mvn clean compile
 RUN cd  /app/complete && mvn package
-RUN cp -r /app/target/omsservice.war /opt/apache-tomcat-9.0.8/webapps
+RUN mv /app/complete/target/gs-serving-web-content-0.1.0.war /opt/apache-tomcat-9.0.8/webapps
 
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ["/opt/apache-tomcat-9.0.8/bin/catalina.sh", "run"]
